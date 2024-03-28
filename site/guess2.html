@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Угадайка мултиплеер</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="menu">
+        <div class="title"><h1>Меню</h1></div>
+        <div class="list_menu">
+            <ul>
+                <li><a href="">Главная<a href="index.html"></a></li>
+                <li><a href="game.html">Игры</a></li>
+                <h3><a href="guess.html">Угадайка</a></h3>
+                <li><a href="">Контакты</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="content">
+        <div id="header">
+            <a href="index.html">Главная</a> <span>/</span>
+            <a href="guess3.html">Камень, ножницы, бумага</a> <span>/</span>
+            <a href="puzzle.html">Загадки</a> <span>/</span>
+            <a href="guess.html">Угадайка</a> <span>/</span>
+            <a href="guess2.html">Угадайка мультиплеер</a>
+        </div>
+        <h1>Угадайка мултиплеер</h1>
+        <div id="center">
+            <div id="box">
+                <p id="numberUser"></p>
+                <input type="number" id="userAnswer">
+                <div id="comparison"></div>
+                <br><br>
+                <a href="#" onclick="playGuess2();">Ответить</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("numberUser").innerHTML =
+            "Игрок №1 Введите число от 0 до 100";
+        var number = parseInt(Math.random() * 100);
+        var playerNum = 2;
+
+
+        function playGuess(NumberBoxId, number) {
+            document.getElementById("numberUser").innerHTML =
+                "Игрок №" + playerNum + " Введите число от 0 до 100";
+            userNumber = document.getElementById(NumberBoxId).value;
+
+            if (playerNum == 1) {
+                playerNum = 2;
+            } else {
+                playerNum = 1;
+            }
+
+            if (userNumber < number) {
+                document.getElementById("comparison").textContent =
+                    "Ваше число слишком маленькое";
+            } else if (userNumber > number) {
+                document.getElementById("comparison").textContent =
+                    "Ваше число слишком большое";
+            } else if (userNumber == number) {
+                document.getElementById("numberUser").textContent =
+                    "Для того,чтобы начать заново,обновите страницу.";
+                document.getElementById("comparison").textContent =
+                    "Вы угадали! Выйграл игрок №" + playerNum;
+                return;
+            } else {
+                document.getElementById("comparison").textContent =
+                    "Введите число!";
+            }
+        }
+
+
+        function playGuess2() {
+            playerNum = playerNum;
+            playGuess("userAnswer", number);
+        }
+    </script>
+    <div id="footer">By Yticmic © 2022 <a href="https://www.donationalerts.com/r/yticmic1" target="_blank">Поддержка меня ₽</a></div>
+</body>
+
+</html>
